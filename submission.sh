@@ -6,7 +6,7 @@
 #PBS -m be
 #PBS -l nodes=1:ppn=1
 
-module load python=3.7.0
+module load python/3.7.0
 
 cd $PBS_O_WORKDIR
 
