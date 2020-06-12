@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#PBS -q batch
+#PBS -N outfile_batch_calculation
+#PBS -M joe_cong1@baylor.edu
+#PBS -m be
+#PBS -l nodes=1:ppn=2
+
+module load matlab
+
+setenv MATLABPATH /ion/home/congj/matlab
+
+cd $PBS_O_WORKDIR
+
+echo "Job started at:"
+
+date
+
+matlab -nodisplay -nosplash < calculation.m > outfile_calculation.out
+
+echo "Job ended at:"
+
+date
