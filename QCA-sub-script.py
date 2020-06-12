@@ -5,8 +5,8 @@ import numpy as np
 
 if __name__ == '__main__':
     subHome = os.getcwd()
-    # simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
-    simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    # simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
     # simHome = "/home/joe/dev/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
 
     job = 'calculation'
