@@ -1,4 +1,6 @@
 from QCAInputSim import *
+import os
+import numpy as np
 
 
 if __name__ == '__main__':
@@ -55,5 +57,6 @@ if __name__ == '__main__':
         if calc.job == "visualization":
             os.chdir(calc.path)
             os.system("matlab < calculation.m")
+            os.chdir(subHome)
 
     calcLog.close()
