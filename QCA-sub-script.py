@@ -11,9 +11,9 @@ if __name__ == '__main__':
 
     job = 'calculation'
     circuitType = 'inverse'
-    mission = 'clockWL'
+    # mission = 'clockWL'
     minValue = 10.0
-    maxValue = 401.0
+    maxValue = 11.0
     step = 10.0
 
     calcLog = open(simHome + '/' + 'calcLog', 'w')
@@ -25,16 +25,7 @@ if __name__ == '__main__':
         if job not in ['calculation', 'visualization']:
             raise ValueError('job type error')
 
-        if mission == 'section':
-            calc = Calculation(simHome, job, circuitType=circuitType, section=parameter)
-        elif mission == 'overlap':
-            calc = Calculation(simHome, job, circuitType=circuitType, overlap=parameter)
-        elif mission == 'clockWL':
-            calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=20)
-        elif mission == 'invIdx':
-            calc = Calculation(simHome, job, circuitType=circuitType, invIdx=parameter)
-        else:
-            raise ValueError('mission type error')
+        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=20)
 
         calc.getDirName()
         calcLog.write(calc.name + '\n')

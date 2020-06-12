@@ -24,8 +24,12 @@ class Calculation:
             self.overlap = kwargs.get('overlap')
 
         self.invIdx = 7
-        if (self.circuitType == 'inverse') & ('invIdx' in kwargs):
+        if 'invIdx' in kwargs:
             self.invIdx = kwargs.get('invIdx')
+
+        self.offset = 10
+        if 'offset' in kwargs:
+            self.offset = kwargs.get('offset')
 
         self.radiusOfEffect = 10.1
         if 'radiusOfEffect' in kwargs:
@@ -146,6 +150,7 @@ class Calculation:
             fout.write("lsection = " + str(self.section) + "; \n")
             fout.write("lcross = " + str(self.overlap) + "; \n")
             fout.write("idxInvert = " + str(self.invIdx) + "; \n")
+            fout.write("offset = " + str(self.offset) + "; \n")
             fout.write("pitch = " + str(self.cellSpacing + 1) + "; \n")
             fout.write("radiusOfEffect = " + str(self.radiusOfEffect) + "; \n")
             fout.write("numOfPeriods = " + str(self.numOfPeriods) + "; \n")
