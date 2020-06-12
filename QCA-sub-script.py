@@ -13,7 +13,7 @@ if __name__ == '__main__':
     circuitType = 'inverse'
     # mission = 'clockWL'
     minValue = 10.0
-    maxValue = 11.0
+    maxValue = 401.0
     step = 10.0
 
     calcLog = open(simHome + '/' + 'calcLog', 'w')
