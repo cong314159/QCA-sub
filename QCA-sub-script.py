@@ -5,12 +5,12 @@ import numpy as np
 
 if __name__ == '__main__':
     subHome = os.getcwd()
-    simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
-    # simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    # simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
     # simHome = "/home/joe/dev/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
 
     job = 'calculation'
-    circuitType = 'inverse'
+    circuitType = 'fanout'
     # mission = 'clockWL'
     minValue = 10.0
     maxValue = 401.0
@@ -25,7 +25,7 @@ if __name__ == '__main__':
         if job not in ['calculation', 'visualization']:
             raise ValueError('job type error')
 
-        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=20, offset=10.0)
+        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=7)
 
         calc.getDirName()
         calcLog.write(calc.name + '\n')
