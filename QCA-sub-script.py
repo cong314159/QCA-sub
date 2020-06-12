@@ -25,7 +25,7 @@ if __name__ == '__main__':
         if job not in ['calculation', 'visualization']:
             raise ValueError('job type error')
 
-        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=20)
+        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=20, offset=10.0)
 
         calc.getDirName()
         calcLog.write(calc.name + '\n')

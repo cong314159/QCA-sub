@@ -27,7 +27,7 @@ class Calculation:
         if 'invIdx' in kwargs:
             self.invIdx = kwargs.get('invIdx')
 
-        self.offset = 10
+        self.offset = 0.0
         if 'offset' in kwargs:
             self.offset = kwargs.get('offset')
 
@@ -97,6 +97,8 @@ class Calculation:
         name += 'section' + str(self.section) + '_'
 
         name += 'overlap' + str(self.overlap) + '_'
+
+        name += 'offset' + str(self.offset) + '_'
 
         name += 'RoE' + str(self.radiusOfEffect) + '_'
 

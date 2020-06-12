@@ -4,10 +4,10 @@
 #PBS -N outfile_submission
 #PBS -M joe_cong1@baylor.edu
 #PBS -m be
-#PBS -l nodes=1:ppn=2
+#PBS -l nodes=1:ppn=1
 
-module load python
+module load python=3.7.0
 
-cd "$PBS_O_WORKDIR" || exit
+cd $PBS_O_WORKDIR
 
 python < QCAInputSim.py > outfile_QCAInputSim.out
