@@ -1,5 +1,6 @@
 % adding path for kodiak calculations, doesn't affect local calculations
 addpath '/home/congj/code/matlab/QCAInputSim'
+addpath '/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study'
 addpath '/Users/joe/dev/matlab/QCAInputSim'
 addpath '/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study'
 addpath '/home/joe/dev/QCAInputSim'
