@@ -21,4 +21,4 @@ circuit = circuit.pipeline(clockSignalList, 'inputSignalList', inputSignalList, 
                                                   'randomizedRelaxation', 1);
 
 %% Visualization
-PipelineVisualization(simnamefront,ax,pwd,strcat(simnamefront, '.mp4'),10, 'MPEG-4');
+PipelineVisualization(simnamefront,ax,pwd,strcat(simnamefront, '.mp4'),10, 'Motion JPEG AVI');
