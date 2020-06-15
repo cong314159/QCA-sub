@@ -7,6 +7,8 @@
       <w>lcross</w>
       <w>lsection</w>
       <w>matlab</w>
+      <w>nodisplay</w>
+      <w>nosplash</w>
     </words>
   </dictionary>
 </component>

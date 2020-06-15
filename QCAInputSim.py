@@ -7,6 +7,10 @@ class Calculation:
         self.homeDir = args[0]
         self.job = args[1]
 
+        self.kodiak = True
+        if 'kodiak' in kwargs:
+            self.kodiak = kwargs.get('kodiak')
+
         self.algorithm = 'ICH'
         if 'algorithm' in kwargs:
             self.algorithm = kwargs.get('algorithm')

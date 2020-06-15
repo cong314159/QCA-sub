@@ -8,10 +8,11 @@ if __name__ == '__main__':
     simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
     # simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
 
-    job = 'calculation'
+    kodiak = True
+    job = 'visualization'
     circuitType = 'fanout'
     # mission = 'clockWL'
-    minValue = 10.0
+    minValue = 230.0
     maxValue = 401.0
     step = 10.0
 
@@ -24,7 +25,7 @@ if __name__ == '__main__':
         if job not in ['calculation', 'visualization']:
             raise ValueError('job type error')
 
-        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=7)
+        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=7, kodiak=True)
 
         calc.getDirName()
         calcLog.write(calc.name + '\n')
@@ -44,9 +45,9 @@ if __name__ == '__main__':
         except Exception:
             raise RuntimeError('bash file generation error')
 
-        if calc.job == "visualization":
+        if (calc.job == "visualization") & (not calc.kodiak):
             os.chdir(calc.path)
-            os.system("matlab < calculation.m")
+            os.system("matlab < calculation.m -nosplash -nodisplay")
             os.chdir(subHome)
 
     calcLog.close()
