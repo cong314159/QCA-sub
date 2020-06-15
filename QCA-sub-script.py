@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     kodiak = True
     job = 'visualization'
-    circuitType = 'inverse'
+    circuitType = 'input'
     # mission = 'clockWL'
     minValue = 10.0
     maxValue = 401.0
