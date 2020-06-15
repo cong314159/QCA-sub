@@ -10,9 +10,9 @@ if __name__ == '__main__':
 
     kodiak = True
     job = 'visualization'
-    circuitType = 'fanout'
+    circuitType = 'fanin'
     # mission = 'clockWL'
-    minValue = 230.0
+    minValue = 10.0
     maxValue = 401.0
     step = 10.0
 
