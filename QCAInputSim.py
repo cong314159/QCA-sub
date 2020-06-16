@@ -11,6 +11,10 @@ class Calculation:
         if 'staticParameter' in kwargs:
             self.staticParameter = kwargs.get('staticParameter')
 
+        self.staticValue = 20.0
+        if 'staticValue' in kwargs:
+            self.staticValue = kwargs.get('staticValue')
+
         self.runningParameter = 'clockWL'
         if 'runningParameter' in kwargs:
             self.runningParameter = kwargs.get('runningParameter')
@@ -166,7 +170,7 @@ class Calculation:
         else:
             name += self.circuitType + '_'
 
-        name += self.staticParameter + '_static_'
+        name += str(self.staticValue) + self.staticParameter + '_static_'
 
         name += self.runningParameter + '_running_'
 

@@ -18,6 +18,7 @@ if __name__ == '__main__':
     circuitType = 'input'
     runningParameter = 'clockWL'
     staticParameter = 'clockAmp'
+    staticValue = 18.0
     minValue = 10.0
     maxValue = 401.0
     step = 10.0
@@ -36,12 +37,13 @@ if __name__ == '__main__':
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
+                           staticValue=staticValue,
                            step=step,
                            minValue=minValue,
                            maxValue=maxValue,
                            circuitType=circuitType,
                            inputType=inputType,
-                           clockAmp=19.0,
+                           clockAmp=staticValue,
                            clockWL=parameter,
                            section=7,
                            kodiak=True)
