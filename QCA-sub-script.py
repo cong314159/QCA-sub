@@ -6,15 +6,18 @@ import numpy as np
 
 if __name__ == '__main__':
     subHome = os.getcwd()
-    if socket.gethostname() == 'NewBookXL.local':
+    if socket.gethostname() == "NewBookXL.local":
         simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
     else:
         simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
-    
+
     kodiak = True
+    algorithm = 'ICH'
+    inputType = 'ctrl'
     job = 'calculation_visualization_nodisplay'
     circuitType = 'input'
-    # mission = 'clockWL'
+    runningParameter = 'clockWL'
+    staticParameter = 'clockAmp'
     minValue = 10.0
     maxValue = 401.0
     step = 10.0
@@ -30,14 +33,21 @@ if __name__ == '__main__':
 
         calc = Calculation(simHome,
                            job,
+                           algorithm=algorithm,
+                           runningParameter=runningParameter,
+                           staticParameter=staticParameter,
+                           step=step,
+                           minValue=minValue,
+                           maxValue=maxValue,
                            circuitType=circuitType,
-                           inputType='ctrl',
+                           inputType=inputType,
                            clockAmp=19.0,
                            clockWL=parameter,
                            section=7,
                            kodiak=True)
 
-        calc.getDirName()
+        # calc.getDirName()
+        calcLog.write(calc.groupName + '\n')
         calcLog.write(calc.name + '\n')
 
         try:

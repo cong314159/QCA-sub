@@ -7,6 +7,26 @@ class Calculation:
         self.homeDir = args[0]
         self.job = args[1]
 
+        self.staticParameter = 'clockAmp'
+        if 'staticParameter' in kwargs:
+            self.staticParameter = kwargs.get('staticParameter')
+
+        self.runningParameter = 'clockWL'
+        if 'runningParameter' in kwargs:
+            self.runningParameter = kwargs.get('runningParameter')
+
+        self.minValue = 10.0
+        if 'minValue' in kwargs:
+            self.minValue = kwargs.get('minValue')
+
+        self.maxValue = 401.0
+        if 'maxValue' in kwargs:
+            self.maxValue = kwargs.get('maxValue')
+
+        self.step = 10.0
+        if 'step' in kwargs:
+            self.step = kwargs.get('step')
+
         self.kodiak = True
         if 'kodiak' in kwargs:
             self.kodiak = kwargs.get('kodiak')
@@ -92,6 +112,7 @@ class Calculation:
             self.tspp = kwargs.get('tspp')
 
         self.name = self.getName()
+        self.groupName = self.getGroupName()
         self.path = self.getDirName()
 
     def getName(self):
@@ -134,11 +155,34 @@ class Calculation:
 
         return name
 
+    def getGroupName(self):
+
+        name = self.algorithm + '_'
+
+        name += self.inputType + '_'
+
+        if self.circuitType == 'inverse':
+            name += 'inverse' + str(self.invIdx) + '_'
+        else:
+            name += self.circuitType + '_'
+
+        name += self.staticParameter + '_static_'
+
+        name += self.runningParameter + '_running_'
+
+        name += str(self.minValue) + 'min_'
+
+        name += str(self.maxValue) + 'max_'
+
+        name += 'group'
+
+        return name
+
     def getDirName(self):
-        return self.homeDir + self.name
+        return self.homeDir + self.groupName + '/' + self.name
 
     def makeCalcDir(self):
-        os.mkdir(self.path)
+        os.makedirs(self.path)
 
     def makeMatlabFile(self):
         header = "calculation/header.txt"
