@@ -5,8 +5,8 @@ import numpy as np
 
 if __name__ == '__main__':
     subHome = os.getcwd()
-    simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
-    # simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    # simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
 
     kodiak = True
     job = 'calculation_visualization_nodisplay'
@@ -28,6 +28,7 @@ if __name__ == '__main__':
         calc = Calculation(simHome,
                            job,
                            circuitType=circuitType,
+                           inputType='ctrl',
                            clockWL=parameter,
                            section=20,
                            invIdx=7,
