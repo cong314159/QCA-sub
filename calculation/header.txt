@@ -5,6 +5,7 @@ addpath '/Users/joe/dev/matlab/QCAInputSim'
 addpath '/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study'
 addpath '/home/joe/dev/QCAInputSim'
 addpath '/home/joe/dev/QCAInputSim/Simulations/ICH_WindowOfOperation_study'
+addpath(pwd)
 clear
 close all
 
