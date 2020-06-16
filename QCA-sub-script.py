@@ -31,7 +31,7 @@ if __name__ == '__main__':
                            clockWL=parameter,
                            section=20,
                            invIdx=7,
-                           offset=10,
+                           offset=10.0,
                            kodiak=True)
 
         calc.getDirName()
