@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     kodiak = True
     job = 'calculation_visualization_nodisplay'
-    circuitType = 'input'
+    circuitType = 'inverse'
     # mission = 'clockWL'
     minValue = 10.0
     maxValue = 401.0
@@ -25,7 +25,14 @@ if __name__ == '__main__':
         if job not in ['calculation', 'visualization', 'calculation_visualization_nodisplay']:
             raise ValueError('job type error')
 
-        calc = Calculation(simHome, job, circuitType=circuitType, clockWL=parameter, section=30, kodiak=True)
+        calc = Calculation(simHome,
+                           job,
+                           circuitType=circuitType,
+                           clockWL=parameter,
+                           section=20,
+                           invIdx=7,
+                           offset=10,
+                           kodiak=True)
 
         calc.getDirName()
         calcLog.write(calc.name + '\n')
