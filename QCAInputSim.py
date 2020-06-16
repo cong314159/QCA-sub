@@ -219,7 +219,7 @@ class Calculation:
             file_out.write("inputSignalAmp = " + str(self.inputAmp) + "; \n")
             file_out.write("inputSignalPeriod = clockSignalPeriod * 2; \n")
             file_out.write("inputSignalSharpness = " + str(self.inputShrp) + "; \n")
-            file_out.write("inputSignalPhase = " + str(self.inputShrp) + "; \n")
+            file_out.write("inputSignalPhase = " + str(self.inputPhs) + "; \n")
             file_out.write("inputSignalMean = inputSignalAmp / 2; \n\n")
 
         with open(circuit) as file_in:
