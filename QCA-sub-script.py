@@ -18,7 +18,7 @@ if __name__ == '__main__':
     circuitType = 'input'
     runningParameter = 'clockWL'
     staticParameter = 'clockAmp'
-    staticValue = 18.0
+    staticValue = 17.0
     minValue = 10.0
     maxValue = 401.0
     step = 10.0
