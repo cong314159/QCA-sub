@@ -1,13 +1,16 @@
 from QCAInputSim import *
 import os
+import socket
 import numpy as np
 
 
 if __name__ == '__main__':
     subHome = os.getcwd()
-    # simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
-    simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
-
+    if socket.gethostname() == 'NewBookXL.local':
+        simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    else:
+        simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
+    
     kodiak = True
     job = 'calculation_visualization_nodisplay'
     circuitType = 'input'
