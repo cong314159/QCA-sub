@@ -10,7 +10,7 @@ if __name__ == '__main__':
 
     kodiak = True
     job = 'calculation_visualization_nodisplay'
-    circuitType = 'inverse'
+    circuitType = 'input'
     # mission = 'clockWL'
     minValue = 10.0
     maxValue = 401.0
@@ -29,10 +29,9 @@ if __name__ == '__main__':
                            job,
                            circuitType=circuitType,
                            inputType='ctrl',
+                           clockAmp=19.0,
                            clockWL=parameter,
-                           section=20,
-                           invIdx=7,
-                           offset=10.0,
+                           section=7,
                            kodiak=True)
 
         calc.getDirName()

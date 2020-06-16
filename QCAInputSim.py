@@ -67,9 +67,9 @@ class Calculation:
         if 'inputWL' in kwargs:
             self.inputWL = kwargs.get('inputWL')
 
-        self.inputType = 'Fermi'
-        if 'inputType' in kwargs:
-            self.inputType = kwargs.get('inputType')
+        self.inputSignalType = 'Fermi'
+        if 'inputSignalType' in kwargs:
+            self.inputSignalType = kwargs.get('inputSignalType')
 
         self.inputAmp = 0.3
         if 'inputAmp' in kwargs:
@@ -170,7 +170,7 @@ class Calculation:
             file_out.write("clockSignalPeriod = " + str(self.clockPeriod) + "; \n")
             file_out.write("clockSignalAmp = " + str(self.clockAmp) + "; \n")
             file_out.write("clockSignalWavelength = " + str(self.clockWL) + "; \n")
-            file_out.write("inputSignalType = '" + self.inputType + "'; \n")
+            file_out.write("inputSignalType = '" + self.inputSignalType + "'; \n")
             file_out.write("inputSignalWavelength = " + str(self.inputWL) + "; \n")
             file_out.write("inputSignalAmp = " + str(self.inputAmp) + "; \n")
             file_out.write("inputSignalPeriod = clockSignalPeriod * 2; \n")
