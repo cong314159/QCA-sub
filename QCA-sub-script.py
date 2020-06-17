@@ -49,6 +49,7 @@ if __name__ == '__main__':
                            clockAmp=staticValue,
                            clockWL=parameter,
                            section=7,
+                           tspp=2000,
                            # driverActivation=1.0,
                            # driverSignalShrp=1.0,
                            # driverSignalPhs=0.25,

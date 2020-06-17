@@ -244,6 +244,7 @@ class Calculation:
             file_out.write("driverSignalSharpness = " + str(self.driverSignalShrp) + "; \n")
             file_out.write("driverSignalPhase = " + str(self.driverSignalPhs) + "; \n")
             file_out.write("driverActivation = " + str(self.driverActivation) + "; \n")
+            file_out.write("TimeStepPerPeriod = " + str(self.tspp) + "; \n")
             file_out.write("inputSignalMean = inputSignalAmp / 2; \n\n")
 
     def createHeader(self):
