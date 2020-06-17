@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     kodiak = True
     algorithm = 'ICH'
-    inputType = 'drv'
+    inputType = 'ctrl'
     calculation = True
     visualization = True
     circuitType = 'input'
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         calc = Calculation(simHome,
                            calculation,
                            visualization,
-                           groupIdentifier="bitpacketGroup",
+                           groupIdentifier="input_clockAmpVsWL",
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
@@ -48,10 +48,10 @@ if __name__ == '__main__':
                            inputType=inputType,
                            clockAmp=staticValue,
                            clockWL=parameter,
-                           section=30,
-                           driverActivation=1.0,
-                           driverSignalShrp=1.0,
-                           driverSignalPhs=0.25,
+                           section=7,
+                           # driverActivation=1.0,
+                           # driverSignalShrp=1.0,
+                           # driverSignalPhs=0.25,
                            kodiak=True)
 
         # calc.getDirName()
