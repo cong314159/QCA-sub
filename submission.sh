@@ -10,4 +10,4 @@ module load python/3.7.0
 
 cd $PBS_O_WORKDIR
 
-python < QCA-sub-script.py > outfile_submission.pyout
+python < localScript.py > outfile_submission.pyout
