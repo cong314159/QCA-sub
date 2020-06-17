@@ -1,0 +1,18 @@
+%% Driver Signal Setup
+% The Driver signal type is a Fermi signal
+DriverSignal = Signal();
+% DriverPol = 1;
+DriverSignal.Type = 'Driver';
+DriverSignal.Amplitude = 2;
+DriverSignal.Period = clockSignalPeriod*2;
+DriverSignal.Phase = DriverSignal.Period * driverSignalPhase;
+DriverSignal.Sharpness = driverSignalSharpness;
+DriverSignal.MeanValue = DriverSignal.Amplitude/2;
+
+% circuit.Device{1}.Polarization = DriverSignal; %set the polarization of the driver equal to signal class
+for i = 1:circuit.n_device
+    if strcmp(circuit.Device{i}.Type, 'Driver')
+        circuit.Device{i}.Polarization = DriverSignal;
+        circuit.Device{i}.Activation = driverActivation;
+    end
+end

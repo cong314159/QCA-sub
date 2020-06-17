@@ -1,0 +1,3 @@
+%% finalize circuit, generate neighborlist and relax to ground state
+circuit = circuit.GenerateNeighborList();
+circuit = circuit.Relax2GroundState(0);

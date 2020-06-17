@@ -1,0 +1,7 @@
+%% Clock Signal Setup
+clocksignal = Signal();
+clocksignal.Wavelength = clockSignalWavelength;
+clocksignal.Amplitude = clockSignalAmp*Eo;
+clocksignal.Period=clockSignalPeriod;
+
+clockSignalList{1} = clocksignal;

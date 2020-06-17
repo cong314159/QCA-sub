@@ -14,7 +14,8 @@ if __name__ == '__main__':
     kodiak = True
     algorithm = 'ICH'
     inputType = 'ctrl'
-    job = 'calculation_visualization_nodisplay'
+    calculation = True
+    visualization = True
     circuitType = 'input'
     runningParameter = 'clockWL'
     staticParameter = 'clockAmp'
@@ -29,11 +30,13 @@ if __name__ == '__main__':
         if circuitType not in ['fanin', 'fanout', 'inverse', 'input']:
             raise ValueError('circuit type error')
 
-        if job not in ['calculation', 'visualization', 'calculation_visualization_nodisplay']:
+        if (not calculation) & (not visualization):
             raise ValueError('job type error')
 
         calc = Calculation(simHome,
-                           job,
+                           calculation,
+                           visualization,
+                           groupIdentifier="inputClockAmp",
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
@@ -67,7 +70,7 @@ if __name__ == '__main__':
         except Exception:
             raise RuntimeError('bash file generation error')
 
-        if (calc.job == "visualization") & (not calc.kodiak):
+        if not calc.kodiak:
             os.chdir(calc.path)
             os.system("matlab < calculation.m -nosplash -nodisplay")
             os.chdir(subHome)

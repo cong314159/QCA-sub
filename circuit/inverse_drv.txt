@@ -1,0 +1,70 @@
+%% circuit
+
+circuit = QCACircuit();
+
+circuit.radiusOfEffect_3DC = radiusOfEffect;
+circuit.radiusOfEffect_6DC = radiusOfEffect;
+
+% type 1
+
+driver = SixDotCell();
+driver.Type = 'Driver';
+driver.CenterPosition = [0, 0 + offset, 0];
+driver = driver.updateDotPosition();
+circuit = circuit.addNode(driver);
+
+for i = 1:lsection
+    if i ~= idxInvert
+        node = SixDotCell();
+        node.CenterPosition = [pitch * i, 0 + offset, 0];
+        node = node.updateDotPosition();
+        circuit = circuit.addNode(node);
+    end
+end
+
+for i = idxInvert: idxInvert + lcross - 1
+    node = SixDotCell();
+    node.CenterPosition = [pitch * i, pitch + offset, 0];
+    node = node.updateDotPosition();
+    circuit = circuit.addNode(node);
+
+    node = SixDotCell();
+    node.CenterPosition = [pitch * i, - pitch + offset, 0];
+    node = node.updateDotPosition();
+    circuit = circuit.addNode(node);
+end
+
+% type 2 (mirrored)
+
+driver = SixDotCell();
+driver.Type = 'Driver';
+driver.CenterPosition = [0, 0 - offset, 0];
+driver = driver.updateDotPosition();
+circuit = circuit.addNode(driver);
+
+for i = 1:lsection
+    if i ~= idxInvert + lcross - 1
+        node = SixDotCell();
+        node.CenterPosition = [pitch * i, 0 - offset, 0];
+        node = node.updateDotPosition();
+        circuit = circuit.addNode(node);
+    end
+end
+
+for i = idxInvert: idxInvert + lcross - 1
+    node = SixDotCell();
+    node.CenterPosition = [pitch * i, pitch - offset, 0];
+    node = node.updateDotPosition();
+    circuit = circuit.addNode(node);
+
+    node = SixDotCell();
+    node.CenterPosition = [pitch * i, - pitch - offset, 0];
+    node = node.updateDotPosition();
+    circuit = circuit.addNode(node);
+end
+
+
+
+figure('position', [100, 100, 1200, 1200]);
+ax = axes;
+circuit = circuit.CircuitDraw(0, ax);

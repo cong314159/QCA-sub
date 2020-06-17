@@ -5,21 +5,17 @@ circuit = QCACircuit();
 circuit.radiusOfEffect_3DC = radiusOfEffect;
 circuit.radiusOfEffect_6DC = radiusOfEffect;
 
-for i = 1:5
-    driver = ThreeDotCell();
-    driver.inputControl = 1;
-    driver.lr = 0;
-    driver.CenterPosition = [0.5, -18 + pitch * i, 0];
-    driver = driver.updateDotPosition();
-    circuit = circuit.addNode(driver);
+driver = SixDotCell();
+driver.Type = 'Driver';
+driver.CenterPosition = [0, pitch * 3, 0];
+driver = driver.updateDotPosition();
+circuit = circuit.addNode(driver);
 
-    driver = ThreeDotCell();
-    driver.inputControl = 1;
-    driver.lr = 0;
-    driver.CenterPosition = [0.5, 0 + pitch * i, 0];
-    driver = driver.updateDotPosition();
-    circuit = circuit.addNode(driver);
-end
+driver = SixDotCell();
+driver.Type = 'Driver';
+driver.CenterPosition = [0, pitch * - 3, 0];
+driver = driver.updateDotPosition();
+circuit = circuit.addNode(driver);
 
 for i = 1:lsection
     node = SixDotCell();

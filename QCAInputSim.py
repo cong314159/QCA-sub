@@ -5,7 +5,12 @@ import numpy as np
 class Calculation:
     def __init__(self, *args, **kwargs):
         self.homeDir = args[0]
-        self.job = args[1]
+        self.runCalculation = args[1]
+        self.runVisualization = args[2]
+
+        self.groupIdentifier = ""
+        if 'groupIdentifier' in kwargs:
+            self.groupIdentifier = kwargs.get('groupIdentifier')
 
         self.staticParameter = 'clockAmp'
         if 'staticParameter' in kwargs:
@@ -111,6 +116,18 @@ class Calculation:
         if 'inputPhs' in kwargs:
             self.inputPhs = kwargs.get('inputPhs')
 
+        self.driverSignalShrp = 1.0
+        if 'driverSignalShrp' in kwargs:
+            self.driverSignalShrp = kwargs.get('driverSignalShrp')
+
+        self.driverSignalPhs = 0.25
+        if 'driverSignalPhs' in kwargs:
+            self.driverSignalPhs = kwargs.get('driverSignalPhs')
+
+        self.driverActivation = 1.0
+        if 'driverActivation' in kwargs:
+            self.driverActivation = kwargs.get('driverActivation')
+
         self.tspp = 200
         if 'tspp' in kwargs:
             self.tspp = kwargs.get('tspp')
@@ -120,6 +137,7 @@ class Calculation:
         self.path = self.getDirName()
 
     def getName(self):
+
         name = self.algorithm + '_'
 
         name += self.inputType + '_'
@@ -155,13 +173,24 @@ class Calculation:
 
         name += 'InPhs' + str(self.inputPhs) + '_'
 
+        name += 'DrShrp' + str(self.driverSignalShrp) + '_'
+
+        name += 'DrPhs' + str(self.driverSignalPhs) + '_'
+
+        name += 'DrAct' + str(self.driverActivation) + '_'
+
         name += 'TSPP' + str(self.tspp)
 
         return name
 
     def getGroupName(self):
 
-        name = self.algorithm + '_'
+        name = "group_"
+
+        if not (self.groupIdentifier == ""):
+            name += self.groupIdentifier + '_'
+
+        name += self.algorithm + '_'
 
         name += self.inputType + '_'
 
@@ -176,9 +205,7 @@ class Calculation:
 
         name += str(self.minValue) + 'min_'
 
-        name += str(self.maxValue) + 'max_'
-
-        name += 'group'
+        name += str(self.maxValue) + 'max'
 
         return name
 
@@ -188,21 +215,11 @@ class Calculation:
     def makeCalcDir(self):
         os.makedirs(self.path)
 
-    def makeMatlabFile(self):
-        header = "calculation/header.txt"
-        circuit = "circuit/" + self.circuitType + '_' + self.inputType + ".txt"
-        signal = "signal/signal.txt"
-        naming = "calculation/nameAssign.txt"
-        workload = "calculation/" + self.job + ".txt"
-
-        with open(header) as file_in:
-            with open(self.path + '/' + 'calculation.m', 'w+') as file_out:
-                for line in file_in:
-                    file_out.write(line)
-
+    def writeParameters(self):
         with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+            file_out.write("%% \n")
             file_out.write("SimulationName = '" + "sim_" + self.circuitType + "_'; \n")
-            file_out.write("inputType = 'Ctrl'; \n")
+            file_out.write("inputType = '" + self.inputType + "'; \n")
             file_out.write("epsilon_0 = 8.854E-12; \n")
             file_out.write("a=1e-9; %[m] \n")
             file_out.write("q=1; %[eV] \n")
@@ -224,27 +241,88 @@ class Calculation:
             file_out.write("inputSignalPeriod = clockSignalPeriod * 2; \n")
             file_out.write("inputSignalSharpness = " + str(self.inputShrp) + "; \n")
             file_out.write("inputSignalPhase = " + str(self.inputPhs) + "; \n")
+            file_out.write("driverSignalSharpness = " + str(self.driverSignalShrp) + "; \n")
+            file_out.write("driverSignalPhase = " + str(self.driverSignalPhs) + "; \n")
+            file_out.write("driverActivation = " + str(self.driverActivation) + "; \n")
             file_out.write("inputSignalMean = inputSignalAmp / 2; \n\n")
+
+    def createHeader(self):
+        header = "calculation/header.txt"
+        with open(header) as file_in:
+            with open(self.path + '/' + 'calculation.m', 'w+') as file_out:
+                for line in file_in:
+                    file_out.write(line)
+
+    def writeCircuit(self):
+        circuit = "circuit/" + self.circuitType + '_' + self.inputType + ".txt"
+        finalize = "circuit/circuitFinalize.txt"
 
         with open(circuit) as file_in:
             with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
                 for line in file_in:
                     file_out.write(line)
 
-        with open(signal) as file_in:
+        with open(finalize) as file_in:
             with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
                 for line in file_in:
                     file_out.write(line)
 
+    def writeSignals(self):
+        clockSignal = "signal/clockSignal.txt"
+        inputSignal = "signal/inputSignal.txt"
+        driverSignal = "signal/driverSignal.txt"
+
+        with open(clockSignal) as file_in:
+            with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+                for line in file_in:
+                    file_out.write(line)
+
+        with open(inputSignal) as file_in:
+            with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+                for line in file_in:
+                    file_out.write(line)
+
+        if self.inputType == "drv":
+            with open(driverSignal) as file_in:
+                with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+                    for line in file_in:
+                        file_out.write(line)
+
+    def writeNaming(self):
+        naming = "calculation/nameAssign.txt"
         with open(naming) as file_in:
             with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
                 for line in file_in:
                     file_out.write(line)
 
-        with open(workload) as file_in:
-            with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
-                for line in file_in:
-                    file_out.write(line)
+    def writeWorkload(self):
+        calculation = "calculation/calculation.txt"
+        visualization = "calculation/visualization.txt"
+        if self.runCalculation:
+            with open(calculation) as file_in:
+                with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+                    for line in file_in:
+                        file_out.write(line)
+
+        if self.runVisualization:
+            with open(visualization) as file_in:
+                with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+                    for line in file_in:
+                        file_out.write(line)
+
+    def makeMatlabFile(self):
+
+        self.createHeader()
+
+        self.writeParameters()
+
+        self.writeCircuit()
+
+        self.writeSignals()
+
+        self.writeNaming()
+
+        self.writeWorkload()
 
     def makeBashFile(self):
         with open("calculation/submission.txt") as file_in:

@@ -1,15 +1,4 @@
-%%
-circuit = circuit.GenerateNeighborList();
-circuit = circuit.Relax2GroundState(0);
-circuit = circuit.CircuitDraw(0,myaxis);
-
-%Clock Signal Setup
-clocksignal = Signal();
-clocksignal.Wavelength = clockSignalWavelength;
-clocksignal.Amplitude = clockSignalAmp*Eo;
-clocksignal.Period=clockSignalPeriod;
-
-%Input Signal Setup
+%% input signal setup
 inputsignal = Signal();
 inputsignal.Type = inputSignalType;
 inputsignal.Wavelength = inputSignalWavelength;
@@ -19,6 +8,4 @@ inputsignal.Sharpness = inputSignalSharpness;
 inputsignal.Phase = inputsignal.Period * inputSignalPhase;
 inputsignal.MeanValue = inputSignalMean * Eo;
 
-
 inputSignalList{1} = inputsignal;
-clockSignalList{1} = clocksignal;
