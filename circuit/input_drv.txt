@@ -1,0 +1,53 @@
+%% circuit
+
+circuit = QCACircuit();
+
+circuit.radiusOfEffect_3DC = radiusOfEffect;
+circuit.radiusOfEffect_6DC = radiusOfEffect;
+
+driver = SixDotCell();
+driver.Type = 'Driver';
+driver.CenterPosition = [0, 0, 0];
+driver = driver.updateDotPosition();
+circuit = circuit.addNode(driver);
+
+for i = 1:lsection
+    node = SixDotCell();
+    node.CenterPosition = [pitch * i, 0, 0];
+    node = node.updateDotPosition();
+    circuit = circuit.addNode(node);
+end
+
+% for i = lsection - lcross + 1:lsection + lsection
+%     node = SixDotCell();
+%     node.CenterPosition = [pitch * i, pitch, 0];
+%     node = node.updateDotPosition();
+%     circuit = circuit.addNode(node);
+%
+%     node = SixDotCell();
+%     node.CenterPosition = [pitch * i, - pitch, 0];
+%     node = node.updateDotPosition();
+%     circuit = circuit.addNode(node);
+% end
+%
+% for i = 2 * lsection - lcross + 1:2 * lsection + lsection
+%     node = SixDotCell();
+%     node.CenterPosition = [pitch * i, 2 * pitch, 0];
+%     node = node.updateDotPosition();
+%     circuit = circuit.addNode(node);
+%
+%     node = SixDotCell();
+%     node.CenterPosition = [pitch * i, - 2 * pitch, 0];
+%     node = node.updateDotPosition();
+%     circuit = circuit.addNode(node);
+% end
+
+% for i = 3 * lsection - lcross + 1:3 * lsection + lsection
+%     node = SixDotCell();
+%     node.CenterPosition = [i, 0, 0];
+%     circuit = circuit.addNode(node);
+% end
+
+figure('position', [100, 100, 1200, 1200]);
+ax = axes;
+circuit = circuit.CircuitDraw(0, ax);
