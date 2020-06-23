@@ -13,13 +13,13 @@ if __name__ == '__main__':
 
     kodiak = True
     algorithm = 'ICH'
-    inputType = 'ctrl'
+    inputType = 'drv'
     calculation = True
     visualization = True
-    circuitType = 'input'
+    circuitType = 'fanin'
     runningParameter = 'clockWL'
     staticParameter = 'clockAmp'
-    staticValue = 13.0
+    staticValue = 20.0
     minValue = 10.0
     maxValue = 401.0
     step = 10.0
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         calc = Calculation(simHome,
                            calculation,
                            visualization,
-                           groupIdentifier="input_clockAmpVsWL",
+                           groupIdentifier="fanin_clockAmpVsWL",
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
@@ -49,10 +49,11 @@ if __name__ == '__main__':
                            clockAmp=staticValue,
                            clockWL=parameter,
                            section=7,
-                           tspp=2000,
-                           # driverActivation=1.0,
-                           # driverSignalShrp=1.0,
-                           # driverSignalPhs=0.25,
+                           tspp=200,
+                           offset=10.0,
+                           driverActivation=1.0,
+                           driverSignalShrp=1.0,
+                           driverSignalPhs=0.25,
                            kodiak=True)
 
         # calc.getDirName()

@@ -5,4 +5,4 @@ figure('position', [100, 100, 1200, 1200], 'visible', 'off');
 clf
 myaxis = axes;
 
-PipelineVisualization(simnamefront,ax,pwd,strcat(simnamefront),100, 'Motion JPEG AVI');
+PipelineVisualization(simnamefront,ax,pwd,strcat(simnamefront),10, 'Motion JPEG AVI');
