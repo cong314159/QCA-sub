@@ -68,6 +68,10 @@ class Calculation:
         if 'offset' in kwargs:
             self.offset = kwargs.get('offset')
 
+        self.separation = 0
+        if 'separation' in kwargs:
+            self.separation = kwargs.get('separation')
+
         self.radiusOfEffect = 10.1
         if 'radiusOfEffect' in kwargs:
             self.radiusOfEffect = kwargs.get('radiusOfEffect')
@@ -153,6 +157,8 @@ class Calculation:
 
         name += 'offset' + str(self.offset) + '_'
 
+        name += 'separation' + str(self.separation) + '_'
+
         name += 'RoE' + str(self.radiusOfEffect) + '_'
 
         name += 'CS' + str(self.cellSpacing) + '_'
@@ -229,6 +235,7 @@ class Calculation:
             file_out.write("lcross = " + str(self.overlap) + "; \n")
             file_out.write("idxInvert = " + str(self.invIdx) + "; \n")
             file_out.write("offset = " + str(self.offset) + "; \n")
+            file_out.write("separation = " + str(self.separation) + "; \n")
             file_out.write("pitch = " + str(self.cellSpacing + 1) + "; \n")
             file_out.write("radiusOfEffect = " + str(self.radiusOfEffect) + "; \n")
             file_out.write("numOfPeriods = " + str(self.numOfPeriods) + "; \n")

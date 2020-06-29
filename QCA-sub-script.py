@@ -16,7 +16,7 @@ if __name__ == '__main__':
     inputType = 'drv'
     calculation = True
     visualization = True
-    circuitType = 'fanin'
+    circuitType = 'majority'
     runningParameter = 'clockWL'
     staticParameter = 'clockAmp'
     staticValue = 20.0
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     calcLog = open(simHome + '/' + 'calcLog', 'w')
 
     for parameter in np.arange(minValue, maxValue, step):
-        if circuitType not in ['fanin', 'fanout', 'inverse', 'input']:
+        if circuitType not in ['fanin', 'fanout', 'inverse', 'input', 'majority']:
             raise ValueError('circuit type error')
 
         if (not calculation) & (not visualization):
@@ -48,9 +48,10 @@ if __name__ == '__main__':
                            inputType=inputType,
                            clockAmp=staticValue,
                            clockWL=parameter,
-                           section=7,
+                           section=20,
                            tspp=200,
                            offset=10.0,
+                           separation=15,
                            driverActivation=1.0,
                            driverSignalShrp=1.0,
                            driverSignalPhs=0.25,
