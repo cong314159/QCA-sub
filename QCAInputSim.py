@@ -279,6 +279,7 @@ class Calculation:
         clockSignal = "signal/clockSignal.txt"
         inputSignal = "signal/inputSignal.txt"
         driverSignal = "signal/driverSignal.txt"
+        driverSignalPerm3 = "signal/driverSignalPerm3.txt"
 
         with open(clockSignal) as file_in:
             with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
@@ -291,10 +292,16 @@ class Calculation:
                     file_out.write(line)
 
         if self.inputType == "drv":
-            with open(driverSignal) as file_in:
-                with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
-                    for line in file_in:
-                        file_out.write(line)
+            if self.circuitType == "majority":
+                with open(driverSignalPerm3) as file_in:
+                    with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+                        for line in file_in:
+                            file_out.write(line)
+            else:
+                with open(driverSignal) as file_in:
+                    with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
+                        for line in file_in:
+                            file_out.write(line)
 
     def writeNaming(self):
         naming = "calculation/nameAssign.txt"

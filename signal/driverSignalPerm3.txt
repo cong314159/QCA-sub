@@ -1,0 +1,35 @@
+% The Driver signal type is a Fermi signal
+DriverSignal = Signal();
+% DriverPol = 1;
+DriverSignal.Type = 'Driver';
+DriverSignal.Amplitude = 2;
+DriverSignal.Period = clockSignalPeriod*2;
+DriverSignal.Phase = DriverSignal.Period * driverSignalPhase;
+DriverSignal.Sharpness = driverSignalSharpness;
+DriverSignal.MeanValue = DriverSignal.Amplitude/2;
+circuit.Device{1}.Polarization = DriverSignal;
+circuit.Device{1}.Activation = driverActivation;
+
+% The Driver signal type is a Fermi signal
+DriverSignal = Signal();
+% DriverPol = 1;
+DriverSignal.Type = 'Driver';
+DriverSignal.Amplitude = 2;
+DriverSignal.Period = clockSignalPeriod*4;
+DriverSignal.Phase = DriverSignal.Period * driverSignalPhase;
+DriverSignal.Sharpness = driverSignalSharpness;
+DriverSignal.MeanValue = DriverSignal.Amplitude/2;
+circuit.Device{2}.Polarization = DriverSignal;
+circuit.Device{2}.Activation = driverActivation;
+
+% The Driver signal type is a Fermi signal
+DriverSignal = Signal();
+% DriverPol = 1;
+DriverSignal.Type = 'Driver';
+DriverSignal.Amplitude = 2;
+DriverSignal.Period = clockSignalPeriod*8;
+DriverSignal.Phase = DriverSignal.Period * driverSignalPhase;
+DriverSignal.Sharpness = driverSignalSharpness;
+DriverSignal.MeanValue = DriverSignal.Amplitude/2;
+circuit.Device{3}.Polarization = DriverSignal;
+circuit.Device{3}.Activation = driverActivation;
