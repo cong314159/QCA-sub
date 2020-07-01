@@ -292,7 +292,7 @@ class Calculation:
                     file_out.write(line)
 
         if self.inputType == "drv":
-            if self.circuitType == "majority":
+            if (self.circuitType == "majority") | (self.circuitType == "majority_step"):
                 with open(driverSignalPerm3) as file_in:
                     with open(self.path + '/' + 'calculation.m', 'a+') as file_out:
                         for line in file_in:
