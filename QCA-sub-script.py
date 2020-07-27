@@ -6,7 +6,7 @@ import numpy as np
 
 if __name__ == '__main__':
     subHome = os.getcwd()
-    if socket.gethostname() == "NewBookXL.local":
+    if socket.gethostname() == "NewBook":
         simHome = "/Users/joe/dev/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
     else:
         simHome = "/home/congj/code/matlab/QCAInputSim/Simulations/ICH_WindowOfOperation_study/"
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     inputType = 'drv'
     calculation = True
     visualization = True
-    circuitType = 'majority_step'
+    circuitType = 'inverse'
     runningParameter = 'clockWL'
     staticParameter = 'clockAmp'
     staticValue = 20.0
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         calc = Calculation(simHome,
                            calculation,
                            visualization,
-                           groupIdentifier="majority_step_clockAmpVsWL",
+                           groupIdentifier="inverse_drv_clockAmpVsWL",
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
@@ -48,10 +48,10 @@ if __name__ == '__main__':
                            inputType=inputType,
                            clockAmp=staticValue,
                            clockWL=parameter,
-                           section=7,
+                           section=20,
                            tspp=200,
                            offset=10.0,
-                           separation=15,
+                           separation=10,
                            numOfPeriods=16,
                            driverActivation=1.0,
                            driverSignalShrp=1.0,
