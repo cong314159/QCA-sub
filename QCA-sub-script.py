@@ -16,7 +16,7 @@ if __name__ == '__main__':
     inputType = 'drv'
     calculation = True
     visualization = True
-    circuitType = 'inverse'
+    circuitType = 'fanin'
     runningParameter = 'clockWL'
     staticParameter = 'clockAmp'
     staticValue = 20.0
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         calc = Calculation(simHome,
                            calculation,
                            visualization,
-                           groupIdentifier="inverse_drv_clockAmpVsWL",
+                           groupIdentifier="fanin_drv_clockAmpVsWL_UpdatedRandomizer",
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
@@ -48,11 +48,11 @@ if __name__ == '__main__':
                            inputType=inputType,
                            clockAmp=staticValue,
                            clockWL=parameter,
-                           section=20,
+                           section=7,
                            tspp=200,
-                           offset=10.0,
-                           separation=10,
-                           numOfPeriods=16,
+                           # offset=10.0,
+                           # separation=10,
+                           numOfPeriods=8,
                            driverActivation=1.0,
                            driverSignalShrp=1.0,
                            driverSignalPhs=0.25,
