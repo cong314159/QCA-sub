@@ -104,6 +104,10 @@ class Calculation:
         if 'inputSignalType' in kwargs:
             self.inputSignalType = kwargs.get('inputSignalType')
 
+        self.inputSignalFringingParameter = 0.0
+        if 'inputSignalFringingParameter' in kwargs:
+            self.inputSignalFringingParameter = kwargs.get('inputSignalFringingParameter')
+
         self.inputAmp = 0.3
         if 'inputAmp' in kwargs:
             self.inputAmp = kwargs.get('inputAmp')
@@ -169,7 +173,10 @@ class Calculation:
 
         name += 'InWL' + str(self.inputWL) + '_'
 
-        name += 'InType' + self.inputType + '_'
+        name += 'InType' + self.inputSignalType + '_'
+
+        if self.inputSignalType == 'Exp':
+            name += 'InFP' + str(self.inputSignalFringingParameter) + '_'
 
         name += 'InAmp' + str(self.inputAmp) + '_'
 
@@ -236,13 +243,14 @@ class Calculation:
             file_out.write("idxInvert = " + str(self.invIdx) + "; \n")
             file_out.write("offset = " + str(self.offset) + "; \n")
             file_out.write("separation = " + str(self.separation) + "; \n")
-            file_out.write("pitch = " + str(self.cellSpacing + 1) + "; \n")
+            file_out.write("pitch = " + str(self.cellSpacing) + "; \n")
             file_out.write("radiusOfEffect = " + str(self.radiusOfEffect) + "; \n")
             file_out.write("numOfPeriods = " + str(self.numOfPeriods) + "; \n")
             file_out.write("clockSignalPeriod = " + str(self.clockPeriod) + "; \n")
             file_out.write("clockSignalAmp = " + str(self.clockAmp) + "; \n")
             file_out.write("clockSignalWavelength = " + str(self.clockWL) + "; \n")
             file_out.write("inputSignalType = '" + self.inputSignalType + "'; \n")
+            file_out.write("inputSignalFringingParameter = " + str(self.inputSignalFringingParameter) + "; \n")
             file_out.write("inputSignalWavelength = " + str(self.inputWL) + "; \n")
             file_out.write("inputSignalAmp = " + str(self.inputAmp) + "; \n")
             file_out.write("inputSignalPeriod = clockSignalPeriod * 2; \n")
@@ -291,7 +299,7 @@ class Calculation:
                 for line in file_in:
                     file_out.write(line)
 
-        if self.inputType == "drv":
+        if (self.inputType == "drv") | (self.inputType == "drv_fringing"):
             if (self.circuitType == "majority") | (self.circuitType == "majority_step"):
                 with open(driverSignalPerm3) as file_in:
                     with open(self.path + '/' + 'calculation.m', 'a+') as file_out:

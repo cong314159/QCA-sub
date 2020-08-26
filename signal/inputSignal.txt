@@ -1,6 +1,7 @@
 %% input signal setup
 inputsignal = Signal();
 inputsignal.Type = inputSignalType;
+inputsignal.FringingParameter = inputSignalFringingParameter;
 inputsignal.Wavelength = inputSignalWavelength;
 inputsignal.Amplitude = inputSignalAmp * Eo;
 inputsignal.Period = inputSignalPeriod;

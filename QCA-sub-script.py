@@ -13,21 +13,21 @@ if __name__ == '__main__':
 
     kodiak = True
     algorithm = 'ICH'
-    inputType = 'drv'
+    inputType = 'drv_fringing'
     calculation = True
     visualization = True
-    circuitType = 'fanin'
-    runningParameter = 'clockWL'
-    staticParameter = 'clockAmp'
-    staticValue = 20.0
-    minValue = 10.0
-    maxValue = 401.0
-    step = 10.0
+    circuitType = 'input_3dc'
+    runningParameter = 'inputAmp'
+    staticParameter = 'clockWL'
+    staticValue = 50.0
+    minValue = -4.0
+    maxValue = 4.1
+    step = 0.1
 
     calcLog = open(simHome + '/' + 'calcLog', 'w')
 
     for parameter in np.arange(minValue, maxValue, step):
-        if circuitType not in ['fanin', 'fanout', 'inverse', 'input', 'majority', 'majority_step']:
+        if circuitType not in ['fanin', 'fanout', 'inverse', 'input', 'input_3dc', 'majority', 'majority_step']:
             raise ValueError('circuit type error')
 
         if (not calculation) & (not visualization):
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         calc = Calculation(simHome,
                            calculation,
                            visualization,
-                           groupIdentifier="fanin_drv_clockAmpVsWL_UpdatedRandomizer",
+                           groupIdentifier="input_drv_inputAmp_vs_clockWL_UpdatedRandomizer",
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
@@ -46,16 +46,20 @@ if __name__ == '__main__':
                            maxValue=maxValue,
                            circuitType=circuitType,
                            inputType=inputType,
-                           clockAmp=staticValue,
-                           clockWL=parameter,
-                           section=7,
+                           clockWL=staticValue,
+                           clockAmp=20,
+                           section=11,
+                           cellSpacing=1.0,
                            tspp=200,
+                           inputAmp=parameter,
+                           inputSignalType='Exp',
                            # offset=10.0,
                            # separation=10,
                            numOfPeriods=8,
                            driverActivation=1.0,
                            driverSignalShrp=1.0,
                            driverSignalPhs=0.25,
+                           FringingParameter=0,
                            kodiak=True)
 
         # calc.getDirName()
