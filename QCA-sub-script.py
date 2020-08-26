@@ -20,8 +20,8 @@ if __name__ == '__main__':
     runningParameter = 'inputAmp'
     staticParameter = 'clockWL'
     staticValue = 50.0
-    minValue = -2.0
-    maxValue = 2.1
+    minValue = -4.0
+    maxValue = 4.1
     step = 0.1
 
     calcLog = open(simHome + '/' + 'calcLog', 'w')
