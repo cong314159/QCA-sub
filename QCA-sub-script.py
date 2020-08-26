@@ -16,7 +16,7 @@ if __name__ == '__main__':
     inputType = 'drv_fringing'
     calculation = True
     visualization = True
-    circuitType = 'input_3dc'
+    circuitType = 'fanin_3dc'
     runningParameter = 'inputAmp'
     staticParameter = 'clockWL'
     staticValue = 50.0
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     calcLog = open(simHome + '/' + 'calcLog', 'w')
 
     for parameter in np.arange(minValue, maxValue, step):
-        if circuitType not in ['fanin', 'fanout', 'inverse', 'input', 'input_3dc', 'majority', 'majority_step']:
+        if circuitType not in ['fanin', 'fanin_3dc', 'fanout', 'inverse', 'input', 'input_3dc', 'majority', 'majority_step']:
             raise ValueError('circuit type error')
 
         if (not calculation) & (not visualization):
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         calc = Calculation(simHome,
                            calculation,
                            visualization,
-                           groupIdentifier="input_drv_inputAmp_vs_clockWL_UpdatedRandomizer",
+                           groupIdentifier="fanin_drv_inputAmp_vs_clockWL_UpdatedRandomizer",
                            algorithm=algorithm,
                            runningParameter=runningParameter,
                            staticParameter=staticParameter,
@@ -48,7 +48,8 @@ if __name__ == '__main__':
                            inputType=inputType,
                            clockWL=staticValue,
                            clockAmp=20,
-                           section=11,
+                           section=7,
+                           overlap=2,
                            cellSpacing=1.0,
                            tspp=200,
                            inputAmp=parameter,

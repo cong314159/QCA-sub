@@ -1,0 +1,73 @@
+%% circuit
+
+circuit = QCACircuit();
+
+circuit.radiusOfEffect_3DC = radiusOfEffect;
+circuit.radiusOfEffect_6DC = radiusOfEffect;
+
+driver = ThreeDotCell();
+driver.Type = 'Driver';
+driver.CenterPosition = [0, 2 * pitch * 3, 0];
+driver = driver.updateDotPosition();
+circuit = circuit.addNode(driver);
+
+driver = ThreeDotCell();
+driver.Type = 'Driver';
+driver.CenterPosition = [0, 2 * pitch * - 3, 0];
+driver = driver.updateDotPosition();
+circuit = circuit.addNode(driver);
+
+for i = 1:lsection
+    node = ThreeDotCell();
+    node.CenterPosition = [pitch * i, 3 * pitch * 2, 0];
+    node = node.updateDotPosition();
+    node.inputControl = 1;
+    circuit = circuit.addNode(node);
+
+    node = ThreeDotCell();
+    node.CenterPosition = [pitch * i, - 3 * pitch * 2, 0];
+    node = node.updateDotPosition();
+    node.inputControl = 1;
+    circuit = circuit.addNode(node);
+end
+
+for i = lsection - lcross + 1:lsection + lsection
+    node = ThreeDotCell();
+    node.CenterPosition = [pitch * i, 2 * pitch * 2, 0];
+    node = node.updateDotPosition();
+    node.inputControl = 1;
+    circuit = circuit.addNode(node);
+
+    node = ThreeDotCell();
+    node.CenterPosition = [pitch * i, - 2 * pitch * 2, 0];
+    node = node.updateDotPosition();
+    node.inputControl = 1;
+    circuit = circuit.addNode(node);
+end
+
+for i = 2 * lsection - lcross + 1:2 * lsection + lsection
+    node = ThreeDotCell();
+    node.CenterPosition = [pitch * i, 1 * pitch * 2, 0];
+    node = node.updateDotPosition();
+    node.inputControl = 1;
+    circuit = circuit.addNode(node);
+
+    node = ThreeDotCell();
+    node.CenterPosition = [pitch * i, -1 * pitch * 2, 0];
+    node = node.updateDotPosition();
+    node.inputControl = 1;
+    circuit = circuit.addNode(node);
+end
+
+for i = 3 * lsection - lcross + 1:3 * lsection + lsection
+    node = ThreeDotCell();
+    node.CenterPosition = [pitch * i, 0 * pitch * 2, 0];
+    node = node.updateDotPosition();
+    node.inputControl = 1;
+    circuit = circuit.addNode(node);
+end
+
+figure('position', [100, 100, 1200, 1200]);
+ax = axes;
+circuit = circuit.CircuitDraw(0, ax);
+
