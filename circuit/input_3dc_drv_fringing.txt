@@ -16,6 +16,7 @@ for i = 1:lsection
     node.CenterPosition = [pitch * i, 0, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 end
 

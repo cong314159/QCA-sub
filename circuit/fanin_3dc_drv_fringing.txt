@@ -22,12 +22,14 @@ for i = 1:lsection
     node.CenterPosition = [pitch * i, 3 * pitch * 2, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 
     node = ThreeDotCell();
     node.CenterPosition = [pitch * i, - 3 * pitch * 2, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 end
 
@@ -36,12 +38,14 @@ for i = lsection - lcross + 1:lsection + lsection
     node.CenterPosition = [pitch * i, 2 * pitch * 2, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 
     node = ThreeDotCell();
     node.CenterPosition = [pitch * i, - 2 * pitch * 2, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 end
 
@@ -50,12 +54,14 @@ for i = 2 * lsection - lcross + 1:2 * lsection + lsection
     node.CenterPosition = [pitch * i, 1 * pitch * 2, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 
     node = ThreeDotCell();
     node.CenterPosition = [pitch * i, -1 * pitch * 2, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 end
 
@@ -64,6 +70,7 @@ for i = 3 * lsection - lcross + 1:3 * lsection + lsection
     node.CenterPosition = [pitch * i, 0 * pitch * 2, 0];
     node = node.updateDotPosition();
     node.inputControl = 1;
+    node.lr = rem(i, 2);
     circuit = circuit.addNode(node);
 end
 
